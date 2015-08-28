@@ -27,4 +27,4 @@ and place the `niindex.php` along with the `.htaccess` in your directory of choi
 
 #### Feedback
 
-Please [provide feedback](issues). Thanks! 
+Please [provide feedback](http://www.github.com/vsoch/niindex/issues). Thanks! 
