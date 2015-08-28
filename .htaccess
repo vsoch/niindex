@@ -1,0 +1,17 @@
+# DIRECTORY CUSTOMIZATION
+<IfModule mod_autoindex.c>
+
+# Enable indexing
+Options +Indexes
+DirectoryIndex /.niindex.php
+
+# SET DISPLAY ORDER
+IndexOrderDefault Descending Name
+
+</IfModule>
+
+# STRONG HTACCESS PROTECTION
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+ order allow,deny
+ deny from all
+</Files>
