@@ -8,7 +8,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript"></script>
   <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
   <script src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://rawgithub.com/vsoch/font-brain/master/font-brain/font-brain.css">
 <script>
 var filenames = []
 </script>
@@ -126,7 +127,7 @@ table.dataTable > tbody > tr.child span.dtr-title {
 
 <body>
 
-<div class="container">
+<div class="container" style="">
     <div class="row">
        <div class="col-md-6">
             <div class='papaya' data-params='params'></div>
@@ -136,10 +137,11 @@ table.dataTable > tbody > tr.child span.dtr-title {
            <table id="tabley" class="table table-condensed table-striped table-hover">
                <thead>
                    <tr>
+                       <th></th>
                        <th>Name</th>
-                       <th>Ext</th>
-                       <th>Size</th>
                        <th>Modified</th>
+                       <th></th>
+                       <th></th>
                    </tr>
                 </thead>
                 <tbody>
@@ -147,7 +149,8 @@ table.dataTable > tbody > tr.child span.dtr-title {
       <?php
 
     
-        // Get directory calling function  
+        // Get directory calling function 
+        $base=$_SERVER["SERVER_ADDR"];
         $niindex=strtok($_SERVER["REQUEST_URI"],'?');
      
     
@@ -198,16 +201,25 @@ table.dataTable > tbody > tr.child span.dtr-title {
       $timekey=date("YmdHis", filemtime($dirArray[$index]));
 
       // Print
+      if (is_dir(".$niindex/$namehref") && $namehref != ".") {
+          print ("<tr>
+                  <td><i class='fa fa-folder'></i></td>
+                  <td><a href='./$namehref'>$namehref</a></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+          </tr>");
+      }
+
       if ($extn == "nii" || $extn == "gz") {
           print("
               <script>filenames.push('$namehref')</script>
               <tr>
+                  <td><i class='icon-sagittal'></i></td>
                   <td><a href='./$namehref'>$name</a></td>
-                  <td><a href='./$namehref'>$extn</a></td>
-                  <td><a href='./$namehref'>$size</a></td>
                   <td><a href='./$namehref'>$modtime</a></td>
                   <td><button class='btn btn-default' onclick='changeImage(\"$count\")'>View</button></td>
-                  <td><a href='http://neurosynth.org/decode/?url=http://www.vbmis.com/bmi/project/niindex/$namehref' target='_blank'><button class='btn btn-default'>Decode</button></a></td>
+                  <td><a href='http://neurosynth.org/decode/?url=$base$niindex$namehref' target='_blank'><button class='btn btn-default'>Decode</button></a></td>
               </tr>");
       $count=$count+1;
       }
