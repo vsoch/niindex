@@ -23,3 +23,8 @@ to
       DirectoryIndex .niindex.php
 
 and place the `niindex.php` along with the `.htaccess` in your directory of choice. 
+
+
+#### Feedback
+
+Please [provide feedback](issues). Thanks! 
